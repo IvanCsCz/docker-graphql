@@ -25,6 +25,13 @@ jobs:
         
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+
+    - name: Build Docker Image
+      env:
+        NEW_VERSION: ${{ steps.version.outputs.version }}
+      run: |
+        docker build -t $DOCKER_USER/docker-graphql:0.0.2 .
         
-    # - name: Build the Docker image
-    #   run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    - name: Push Docker Image
+      run: |
+        docker push $DOCKER_USER/docker-graphql:0.0.2 .

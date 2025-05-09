@@ -18,14 +18,13 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Docker login
-      env: 
+    - name: Docker Login
+      env:
         DOCKER_USER: ${{ secrets.DOCKER_USER }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        
       run: |
-        echo "Iniciando login"
-        docker login -u $DOCKER_USER -p DOCKER_PASSWORD
-        echo "Iniciando login"D
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
         
     # - name: Build the Docker image
     #   run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
